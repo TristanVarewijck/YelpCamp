@@ -1,0 +1,19 @@
+{
+  "name": "yelpcamp",
+  "version": "1.0.0",
+  "description": "Trainig ground",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TristanVarewijck/YelpCamp.git"
+  },
+  "author": "Tristan Varewijck / Colt Steele",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TristanVarewijck/YelpCamp/issues"
+  },
+  "homepage": "https://github.com/TristanVarewijck/YelpCamp#readme"
+}
