@@ -17,10 +17,25 @@ db.once('open', function() {
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+app.get('/', async(req, res) => {
+  res.redirect('/campgrounds'); 
+})
 
-app.get('/', (req, res) => {
-    res.render('index')
-  })
+app.get('/campgrounds', async(req, res) => {
+    let items = await CampGround.find().sort({createdAt: 1});
+    res.render('index', {items}); 
+  });
+
+app.get('/campgrounds/:id', async(req, res) => {
+let { id } = req.params;
+let item = await CampGround.findById({_id: id}); 
+console.log(item); 
+res.render('detail', {item}); 
+}); 
+
+
+
+
 
 app.listen(port, () => {
 console.log(`Example app listening at http://localhost:${port}`)

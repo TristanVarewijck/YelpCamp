@@ -5,8 +5,21 @@
 </head>
 <body>
     <main>
-        <h1>Hello World!</h1>
-        <p>Hello human!</p>
+
+        
+       <% items.forEach(function(item){ %>
+        <a href="/campgrounds/<%= item._id %>">
+        <div>
+            <h1><%= item.title %></h1>
+            <p>Hello human!</p>
+        </div>
+        </a>
+
+        <% }); %>
+       
+
+
+        </div>
     </main>
 </body>
 </html>
