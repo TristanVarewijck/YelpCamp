@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
     <%- include('../views/partials/head'); -%>
+    <title>Home</title>
 </head>
 <body>
     <main>
 
         
-       <% items.forEach(function(item){ %>
-        <a href="/campgrounds/<%= item._id %>">
+       <% Campgrounds.forEach(function(campground){ %>
+        <a href="/campgrounds/<%= campground._id %>">
         <div>
-            <h1><%= item.title %></h1>
+            <h1><%= campground.title %></h1>
             <p>Hello human!</p>
         </div>
         </a>
