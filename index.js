@@ -1,5 +1,6 @@
 require('dotenv').config();
 let bodyParser = require('body-parser');
+let morgan = require('morgan')
 const colors = require('colors'); 
 const express = require('express');
 let methodOverride = require('method-override'); 
@@ -19,10 +20,37 @@ db.once('open', function() {
 });
 
 app.set('view engine', 'ejs');
-app.use(express.static('public'), (express.urlencoded({extended: true}))); 
+morgan('tiny');
 
-// override with POST having ?_method=DELETE
+
+app.use(express.static('public'), (express.urlencoded({extended: true})));
+// app.use(morgan('tiny'))
+
+// EXPRESS MIDDLEWARE TEMPLATE
+  // app.use((req, res, next) => ){
+    // YOUR CODE
+  // });
+  
+  // MIDDLE WARE FOR A SPECIFIC ROUTE
+// app.use('/ROUTE', (req, res , next) => {
+    // YOUR CODE 
+// })
+
+// PACKAGES 
 app.use(methodOverride('_method'));
+app.use(morgan('tiny'));
+
+// HANDWRITTEN
+app.use((req, res, next) => {
+  console.log('LOGGED');
+  next();
+}); 
+
+app.use((req, res, next) => {
+  req.requestTime = Date.now();
+  console.log(req.requestTime)
+  next(); 
+})
 
 // ROUTES
 app.get('/', async(req, res) => {
@@ -67,6 +95,10 @@ app.delete('/campgrounds/:id', async(req, res) => {
   const { id } = req.params;
   await CampGround.findByIdAndDelete(id).then(response => console.log(colors.red(response + '--- ' + 'DELETED'))); 
   res.redirect(`/campgrounds`); 
+})
+
+app.use((req, res) => {
+  res.status(404).send('404 not found..'); 
 })
 
 app.listen(port, () => {
