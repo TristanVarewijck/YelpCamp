@@ -27,6 +27,7 @@ app.use(express.static('public'), (express.urlencoded({extended: true})));
 // app.use(morgan('tiny'))
 
 // EXPRESS MIDDLEWARE TEMPLATE
+// SOURCE: https://medium.com/@jamischarles/what-is-middleware-a-simple-explanation-bb22d6b41d01
   // app.use((req, res, next) => ){
     // YOUR CODE
   // });
