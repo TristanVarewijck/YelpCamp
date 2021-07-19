@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%- include('../views/partials/head'); -%>
-    <title>New Campground</title>
-</head>
-<body>
+    <% layout('layouts/boilerplate') -%>    
     <main>
         <form action='/campgrounds' method="POST">
         <label for="title">Title</label>
@@ -24,5 +18,3 @@
 
         </form>
     </main> 
-</body>
-</html>

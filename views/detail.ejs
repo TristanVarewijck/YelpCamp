@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%- include('../views/partials/head'); -%>
-    <title>Info: <%= Campground._id %></title>
-</head>
-<body>
+<% layout('layouts/boilerplate') -%>
     <main>
         <h1><%= Campground.title %></h1>
 
@@ -12,5 +6,3 @@
             <input type="submit">
         </form>
     </main>
-</body>
-</html>

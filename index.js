@@ -5,6 +5,7 @@ const colors = require('colors');
 const express = require('express');
 let methodOverride = require('method-override'); 
 const app = express(); 
+const ejsMate = require('ejs-mate'); 
 const port = 8000; 
 const CampGround = require('./models/campground');
 const mongoose = require('mongoose');
@@ -19,6 +20,8 @@ db.once('open', function() {
   console.log('Connection being made!'); 
 });
 
+app.engine('ejs', ejsMate);
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 morgan('tiny');
 
@@ -53,6 +56,16 @@ app.use((req, res, next) => {
   next(); 
 })
 
+// const needPassword = (req, res, next) => {
+//   const { password } = req.query; 
+//   if(password === 'chicken'){
+//     next(); 
+//   } 
+//   else{
+//     res.send('password invalid');
+//   };  
+// }; 
+
 // ROUTES
 app.get('/', async(req, res) => {
   res.redirect('/campgrounds'); 
@@ -66,6 +79,10 @@ app.get('/campgrounds', async(req, res) => {
 
 app.get('/campgrounds/new', (req, res) => {
     res.render('newCampground'); 
+})
+
+app.get('/secret', (req, res) => {
+  res.send('This is my most valuable secret!'); 
 })
 
 app.post('/campgrounds', async (req, res) => { 

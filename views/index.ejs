@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%- include('../views/partials/head'); -%>
-    <title>Home</title>
-</head>
-<body>
-    <main>
-
-        
+<% layout('layouts/boilerplate') -%>
+        <main>
        <% Campgrounds.forEach(function(campground){ %>
         <a href="/campgrounds/<%= campground._id %>">
         <div>
@@ -15,12 +7,6 @@
             <p>Hello human!</p>
         </div>
         </a>
-
         <% }); %>
-       
-
-
         </div>
-    </main>
-</body>
-</html>
+        </main>
