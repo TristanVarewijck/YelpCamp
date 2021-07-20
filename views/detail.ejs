@@ -1,5 +1,10 @@
 <% layout('layouts/boilerplate') -%>
     <h1><%= Campground.title %></h1>
+    <p><%= Campground.location %></p>
+    <p><%= Campground.price %></p>
+    <p><%= Campground.description %></p>
+    <img src="<%= Campground.image %>" alt="image">
+
 
     <form action="/campgrounds/<%= Campground._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Do you really want to submit the form?');">
         <input type="submit">

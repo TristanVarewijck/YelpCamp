@@ -1,4 +1,5 @@
 require('dotenv').config();
+const axios = require('axios'); 
 let bodyParser = require('body-parser');
 let morgan = require('morgan')
 const colors = require('colors'); 
@@ -9,7 +10,7 @@ const ejsMate = require('ejs-mate');
 const port = 8000; 
 const CampGround = require('./models/campground');
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DB_URI, {
+mongoose.connect('mongodb://localhost:27017/yelpcamp', {
   useNewUrlParser: true, 
   useUnifiedTopology: true, 
   useFindAndModify: false});
@@ -73,8 +74,12 @@ app.get('/', async(req, res) => {
 
 app.get('/campgrounds', async(req, res) => {
     let Campgrounds = await CampGround.find().sort({createdAt: 1});
-    res.render('index', {Campgrounds}); 
+    res.render('index', { Campgrounds }); 
   });
+
+app.get('/campgrounds/randomPhoto', async(req, res) => {
+    res.render('unSplash'); 
+}); 
 
 
 app.get('/campgrounds/new', (req, res) => {
